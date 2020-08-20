@@ -1,0 +1,34 @@
+{
+  "extends": "airbnb",
+  "plugins": [
+    "react",
+    "react-hooks",
+    "babel-plugin-styled-components"
+  ],
+  "parser": "babel-eslint/lib",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".jsx", ".js", ".ts", ".tsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "no-multi-assign": "off",
+    "no-use-before-define": "off"
+  }
+}
