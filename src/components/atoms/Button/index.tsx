@@ -14,6 +14,7 @@ const StyledButton = styled.button<ButtonType>`
 
   background-color: #53a7ed;
   border-color: #53a7ed;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   color: white;
   outline: none;
 `;

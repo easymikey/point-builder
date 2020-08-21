@@ -17,6 +17,7 @@ const StyledInput = styled.input<InputProps>`
   border-style: solid;
 
   border-color: #53a7ed;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   outline: none;
 `;
 

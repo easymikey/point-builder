@@ -11,9 +11,10 @@ const List = () => (
       onChange={(event) =>
         console.log('change', event)
       }
-      onSubmit={(event) =>
+      onSubmit={(event) => {
+        event.preventDefault();
         console.log('change', event)
-      }
+      }}
     />
     <PointList>
       <PointListItem name="point1" />
