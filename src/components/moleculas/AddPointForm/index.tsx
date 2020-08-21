@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
-import { InputProps as InputProps } from '../../atoms/Input';
+import { InputProps } from '../../atoms/Input';
 
 const InputFormWrapper = styled.form`
   width: 400px;
