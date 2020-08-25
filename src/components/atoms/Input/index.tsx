@@ -1,36 +1,35 @@
-import React, {
-  FC,
-  ChangeEvent,
-  MutableRefObject,
-} from 'react';
+import React, { FC, ChangeEvent, MutableRefObject } from 'react';
 import styled from 'styled-components';
 
 const StyledInput = styled.input<InputProps>`
-  width: 250px;
+  width: 230px;
   border: 2px;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
   border-style: solid;
 
-  border-color: #53a7ed;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-color: #d3d3d4;
   outline: none;
+
+  &:hover {
+    border-color: hsl(240, 1%, 72%);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #2d90e0;
+    box-shadow: 0 0 0 2px hsla(220, 90%, 56%, 0.2);
+  }
 `;
 
-
-
 export interface InputProps {
-  inputRef: MutableRefObject<
-    HTMLInputElement | undefined
-  >;
+  inputRef: MutableRefObject<HTMLInputElement | undefined>;
   value: string;
-  onChange: (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input: FC<InputProps> = ({
