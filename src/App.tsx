@@ -35,7 +35,7 @@ const App: FC = () => {
 
   const handleGeometryChange = (
     event: any,
-    changedId: number,
+    changedId: string,
   ) => {
     const { geometry } = event.originalEvent.target;
     const coodrinates = geometry.getCoordinates();
