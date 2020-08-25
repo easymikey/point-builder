@@ -24,8 +24,6 @@ const StyledCheckbox = styled.input`
   margin: 0 0.5rem;
 `;
 
-
-
 interface PointListItemProps {
   label: string | undefined;
   checked: boolean;
