@@ -47,6 +47,7 @@ const PointBlock: FC<PointBlockProps> = ({
     };
     if (pointName !== '') {
       setPointList([...pointList, newPoint]);
+      setPointName('');
     }
   };
 
