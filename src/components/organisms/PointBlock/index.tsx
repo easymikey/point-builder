@@ -1,12 +1,22 @@
-import React, { FC, useState, useRef, ChangeEvent, SyntheticEvent } from 'react';
-import AddPointForm from '../../moleculas/AddPointForm';
-import PointList, { Point } from '../../moleculas/PointList';
+import React, {
+  FC,
+  useState,
+  useRef,
+  ChangeEvent,
+  SyntheticEvent,
+} from 'react';
+import AddPointForm from '../../moleculas/AddGeoPointForm';
+import PointList, { Point } from '../../moleculas/GeoPointList';
 
-const List: FC = () => {
-  const [pointList, setPointList] = useState<(Point | never)[]>(
-    [],
-  );
+interface PointBlockProps {
+  pointList: (Point | never)[];
+  setPointList: (list: Point[]) => void;
+}
 
+const PointBlock: FC<PointBlockProps> = ({
+  pointList,
+  setPointList,
+}) => {
   const getId = () => pointList.length;
 
   const handleChangeChecked = (index: number) => {
@@ -22,9 +32,11 @@ const List: FC = () => {
   const addPoint = (event: SyntheticEvent) => {
     event.preventDefault();
     const id = getId();
+    const geometry = [55.75, 37.57];
     const newPoint = {
       pointName,
       id,
+      geometry,
       checked: false,
     };
     if (pointName !== '') {
@@ -51,11 +63,11 @@ const List: FC = () => {
         onSubmit={addPoint}
       />
       <PointList
-        points={pointList}
+        pointList={pointList}
         handleChangeChecked={handleChangeChecked}
       />
     </div>
   );
 };
 
-export default List;
+export default PointBlock;
