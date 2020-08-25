@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import Header from '../../atoms/Header';
-import PointListItem from '../../atoms/PointListItem';
+import PointListItem from '../../atoms/GeoPointItem';
 
 const StyledPointList = styled.div`
   width: 400px;
@@ -14,22 +14,23 @@ const StyledPointList = styled.div`
 export interface Point {
   id: number;
   pointName: string;
+  geometry: number[];
   checked: boolean;
 }
 
 interface PointListProps {
-  points: (Point | never)[];
+  pointList: (Point | never)[];
   handleChangeChecked: (index: number) => void;
 }
 
 const PointList: FC<PointListProps> = ({
-  points,
+  pointList,
   handleChangeChecked,
 }) => (
   <StyledPointList>
     <Header title="Ваши точки на карте" />
-    {points &&
-      points.map(({ pointName, checked, id }, index) => (
+    {pointList &&
+      pointList.map(({ pointName, checked, id }, index) => (
         <PointListItem
           key={id}
           label={pointName}
