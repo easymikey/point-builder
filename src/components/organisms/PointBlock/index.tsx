@@ -1,28 +1,61 @@
-import React from 'react';
+import React, { FC, useState, useRef, ChangeEvent, SyntheticEvent } from 'react';
 import AddPointForm from '../../moleculas/AddPointForm';
-import PointList from '../../moleculas/PointList';
-import PointListItem from '../../atoms/PointListItem';
+import PointList, { Point } from '../../moleculas/PointList';
 
-const List = () => (
-  <div>
-    <AddPointForm
-      inputRef={React.useRef()}
-      value=""
-      onChange={(event) =>
-        console.log('change', event)
-      }
-      onSubmit={(event) => {
-        event.preventDefault();
-        console.log('change', event)
-      }}
-    />
-    <PointList>
-      <PointListItem name="point1" />
-      <PointListItem name="point2" />
-      <PointListItem name="point3" />
-      <PointListItem name="point4" />
-    </PointList>
-  </div>
-);
+const List: FC = () => {
+  const [pointList, setPointList] = useState<(Point | never)[]>(
+    [],
+  );
+
+  const getId = () => pointList.length;
+
+  const handleChangeChecked = (index: number) => {
+    const newPointList = pointList.slice().map((pointItem) => {
+      const { id, checked } = pointItem;
+      return id === index
+        ? { ...pointItem, checked: !checked }
+        : pointItem;
+    });
+    setPointList(newPointList);
+  };
+
+  const addPoint = (event: SyntheticEvent) => {
+    event.preventDefault();
+    const id = getId();
+    const newPoint = {
+      pointName,
+      id,
+      checked: false,
+    };
+    if (pointName !== '') {
+      setPointList([...pointList, newPoint]);
+    }
+  };
+
+  const pointRef = useRef();
+  const [pointName, setPointName] = useState<string>('');
+
+  const handleChangePointName = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const { value: name } = event.currentTarget;
+    setPointName(name);
+  };
+
+  return (
+    <div>
+      <AddPointForm
+        inputRef={pointRef}
+        value={pointName}
+        onChange={handleChangePointName}
+        onSubmit={addPoint}
+      />
+      <PointList
+        points={pointList}
+        handleChangeChecked={handleChangeChecked}
+      />
+    </div>
+  );
+};
 
 export default List;
