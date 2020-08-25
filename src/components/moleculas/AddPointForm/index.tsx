@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, SyntheticEvent } from 'react';
 import styled from 'styled-components';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
@@ -6,16 +6,15 @@ import { InputProps } from '../../atoms/Input';
 
 const InputFormWrapper = styled.form`
   width: 400px;
-  height: 2rem;
+  height: 2.5rem;
   margin-bottom: 1rem;
 
   display: flex;
+  justify-content: space-between;
 `;
 
-
-
 interface AddPointFormProps extends InputProps {
-  onSubmit: (event: any) => void;
+  onSubmit: (event: SyntheticEvent) => void;
 }
 
 const InputForm: FC<AddPointFormProps> = ({
