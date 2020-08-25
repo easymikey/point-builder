@@ -1,5 +1,7 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+import Header from '../../atoms/Header';
+import PointListItem from '../../atoms/PointListItem';
 
 const StyledPointList = styled.div`
   width: 400px;
@@ -9,14 +11,32 @@ const StyledPointList = styled.div`
   border-radius: 0.5rem;
 `;
 
-
-
-interface PointListProps {
-  children: ReactElement[];
+export interface Point {
+  id: number;
+  pointName: string;
+  checked: boolean;
 }
 
-const PointList: FC<PointListProps> = ({ children }) => (
-  <StyledPointList>{children}</StyledPointList>
-);
+interface PointListProps {
+  points: (Point | never)[];
+  handleChangeChecked: (index: number) => void;
+}
 
+const PointList: FC<PointListProps> = ({
+  points,
+  handleChangeChecked,
+}) => (
+  <StyledPointList>
+    <Header title="Ваши точки на карте" />
+    {points &&
+      points.map(({ pointName, checked, id }, index) => (
+        <PointListItem
+          key={id}
+          label={pointName}
+          checked={checked}
+          onChange={() => handleChangeChecked(index)}
+        />
+      ))}
+  </StyledPointList>
+);
 export default PointList;
