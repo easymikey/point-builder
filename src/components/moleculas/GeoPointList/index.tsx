@@ -12,7 +12,7 @@ const StyledPointList = styled.div`
 `;
 
 export interface Point {
-  id: number;
+  id: string;
   pointName: string;
   geometry: number[];
   checked: boolean;
@@ -20,12 +20,14 @@ export interface Point {
 
 interface PointListProps {
   pointList: (Point | never)[];
-  handleChangeChecked: (index: number) => void;
+  handleChangeChecked: (index: string) => void;
+  deletePoint: (id: string) => void;
 }
 
 const PointList: FC<PointListProps> = ({
   pointList,
   handleChangeChecked,
+  deletePoint,
 }) => (
   <StyledPointList>
     <Header title="Ваши точки на карте" />
@@ -35,7 +37,8 @@ const PointList: FC<PointListProps> = ({
           key={id}
           label={pointName}
           checked={checked}
-          onChange={() => handleChangeChecked(index)}
+          onChange={() => handleChangeChecked(id)}
+          deletePoint={() => deletePoint(id)}
         />
       ))}
   </StyledPointList>

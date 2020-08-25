@@ -4,7 +4,7 @@ import { Point } from '../GeoPointList';
 
 export interface GeoPointsOnMapProps {
   pointList: (Point | never)[];
-  handleGeometryChange: (event: any, name: number) => void;
+  handleGeometryChange: (event: any, name: string) => void;
 }
 
 const GeoPointListOnMap: FC<GeoPointsOnMapProps> = ({

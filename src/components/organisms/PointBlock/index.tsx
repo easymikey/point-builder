@@ -17,9 +17,15 @@ const PointBlock: FC<PointBlockProps> = ({
   pointList,
   setPointList,
 }) => {
-  const getId = () => pointList.length;
+  const getId = (size: number = 16) => {
+    const randomString = [...Array(size)]
+      .map(() => Math.floor(Math.random() * 36).toString(36))
+      .join('');
 
-  const handleChangeChecked = (index: number) => {
+    return randomString;
+  };
+
+  const handleChangeChecked = (index: string) => {
     const newPointList = pointList.slice().map((pointItem) => {
       const { id, checked } = pointItem;
       return id === index
@@ -31,7 +37,7 @@ const PointBlock: FC<PointBlockProps> = ({
 
   const addPoint = (event: SyntheticEvent) => {
     event.preventDefault();
-    const id = getId();
+    const id = getId(16);
     const geometry = [55.75, 37.57];
     const newPoint = {
       pointName,
@@ -42,6 +48,13 @@ const PointBlock: FC<PointBlockProps> = ({
     if (pointName !== '') {
       setPointList([...pointList, newPoint]);
     }
+  };
+
+  const deletePoint = (deletedId: string) => {
+    const newPointList = pointList.slice().filter(({ id }) => {
+      return id !== deletedId;
+    });
+    setPointList(newPointList);
   };
 
   const pointRef = useRef();
@@ -65,6 +78,7 @@ const PointBlock: FC<PointBlockProps> = ({
       <PointList
         pointList={pointList}
         handleChangeChecked={handleChangeChecked}
+        deletePoint={deletePoint}
       />
     </div>
   );
