@@ -7,6 +7,7 @@ const StyledButton = styled.button`
   font-size: 1.2rem;
   border-radius: 0.2rem;
   transition: 0.2s;
+  margin: 0 0.5rem;
 
   display: flex;
   justify-content: center;
@@ -44,8 +45,8 @@ const StyledButton = styled.button`
 interface ButtonProps {
   color?: 'primary' | 'secondary';
   type: 'button' | 'submit';
-  onClick: (event: any) => void;
   buttonName: string;
+  onClick: (event: any) => void;
 }
 
 const Button: FC<ButtonProps> = ({
