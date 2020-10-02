@@ -4,14 +4,14 @@ import Button from '../Button';
 interface GeoPointItemProps {
   label: string | undefined;
   checked: boolean;
-  handleOnChangePoint: () => void;
+  handleOnChangeCheckedPoint: () => void;
   handleOnDeletePoint: () => void;
 }
 
 const GeoPointItem: FC<GeoPointItemProps> = ({
   label,
   checked,
-  handleOnChangePoint,
+  handleOnChangeCheckedPoint,
   handleOnDeletePoint,
 }) => (
   <label className="geo-point-item">
@@ -21,7 +21,7 @@ const GeoPointItem: FC<GeoPointItemProps> = ({
         type="checkbox"
         value={label}
         checked={checked}
-        onChange={handleOnChangePoint}
+        onChange={handleOnChangeCheckedPoint}
       />
       {label}
     </div>
