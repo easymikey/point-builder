@@ -9,6 +9,7 @@ import {
 import GeoPointsOnMap, {
   GeoPointsOnMapProps,
 } from '../../moleculas/GeoPointsOnMap';
+import Spinner from '../../atoms/Spinner';
 
 const mapState = {
   center: [55.76, 37.64],
@@ -30,24 +31,39 @@ const zoomControlOptions = {
 
 interface MapProps extends GeoPointsOnMapProps {
   geometry: (number[] | never)[];
+  isLoading: boolean;
+  updateLoadingState: () => void;
 }
 
 const MyMap: FC<MapProps> = ({
   pointList,
   geometry,
   handleGeometryChange,
+  isLoading,
+  updateLoadingState,
 }) => (
-  <YMaps>
-    <Map defaultState={mapState} width={400} height={400}>
-      <GeoPointsOnMap
-        pointList={pointList}
-        handleGeometryChange={handleGeometryChange}
-      />
-      <Polyline geometry={geometry} options={polylineOptions} />
-      <FullscreenControl />
-      <ZoomControl options={zoomControlOptions} />
-    </Map>
-  </YMaps>
+  <>
+    <YMaps>
+      <Map
+        defaultState={mapState}
+        width={400}
+        height={400}
+        onLoad={() => updateLoadingState()}
+      >
+        <GeoPointsOnMap
+          pointList={pointList}
+          handleGeometryChange={handleGeometryChange}
+        />
+        <Polyline
+          geometry={geometry}
+          options={polylineOptions}
+        />
+        <FullscreenControl />
+        <ZoomControl options={zoomControlOptions} />
+      </Map>
+    </YMaps>
+    {isLoading && <Spinner />}
+  </>
 );
 
 export default MyMap;
