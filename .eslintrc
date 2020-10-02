@@ -1,10 +1,6 @@
 {
   "extends": "airbnb",
-  "plugins": [
-    "react",
-    "react-hooks",
-    "babel-plugin-styled-components"
-  ],
+  "plugins": ["react", "react-hooks"],
   "parser": "babel-eslint/lib",
   "parserOptions": {
     "ecmaVersion": 6,
@@ -29,6 +25,11 @@
     ],
     "react/jsx-props-no-spreading": "off",
     "no-multi-assign": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "object-curly-newline": "warn",
+    "dot-notation": "warn",
+    "import/prefer-default-export": "off"
   }
 }
