@@ -1,17 +1,19 @@
 import React, {
   ChangeEvent,
-  FC,
+  forwardRef,
+  ForwardRefRenderFunction,
   memo,
-  MutableRefObject,
 } from 'react';
 
 export interface InputProps {
-  ref: MutableRefObject<HTMLInputElement | null>;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: FC<InputProps> = ({ ref, onChange }) => (
+const Input: ForwardRefRenderFunction<
+  HTMLInputElement,
+  InputProps
+> = ({ onChange }, ref) => (
   <input className="input-submit" ref={ref} onChange={onChange} />
 );
 
-export default memo(Input);
+export default memo(forwardRef<HTMLInputElement, InputProps>(Input));
