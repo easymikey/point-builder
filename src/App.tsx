@@ -1,27 +1,20 @@
 import React, { FC, useState } from 'react';
-import styled from 'styled-components';
 import { Point } from '../src/components/moleculas/GeoPointList';
 import Map from '../src/components/organisms/Map';
-import PointBlock from '../src/components/organisms/PointBlock';
-
-const Wrapper = styled.div`
-  margin-top: 50px;
-  padding: 50px;
-  width: 850px;
-
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-`;
+import GeoPointBlock from '../src/components/organisms/PointBlock';
 
 const App: FC = () => {
-  const [pointList, setPointList] = useState<(Point | never)[]>(
+  const [pointList, setPointList] = useState<(Point | never)[]>([]);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const updateLoadingState = () => {
+    setIsLoading(false);
+  };
+
+  const [coodinates, setCoordinates] = useState<(number[] | never)[]>(
     [],
   );
-
-  const [coodinates, setCoordinates] = useState<
-    (number[] | never)[]
-  >([]);
 
   const getCoodinates = (points: Point[]) => {
     const coodinates = points.map(({ geometry }) => geometry);
@@ -33,10 +26,7 @@ const App: FC = () => {
     setCoordinates(coordinates);
   }, [pointList]);
 
-  const handleGeometryChange = (
-    event: any,
-    changedId: string,
-  ) => {
+  const handleGeometryChange = (event: any, changedId: string) => {
     const { geometry } = event.originalEvent.target;
     const coodrinates = geometry.getCoordinates();
     const newPointList = pointList.slice().map((pointItem) => {
@@ -49,17 +39,19 @@ const App: FC = () => {
   };
 
   return (
-    <Wrapper>
+    <div className="app">
+      <GeoPointBlock
+        pointList={pointList}
+        setPointList={setPointList}
+      />
       <Map
         pointList={pointList}
         geometry={coodinates}
         handleGeometryChange={handleGeometryChange}
+        isLoading={isLoading}
+        updateLoadingState={updateLoadingState}
       />
-      <PointBlock
-        pointList={pointList}
-        setPointList={setPointList}
-      />
-    </Wrapper>
+    </div>
   );
 };
 
