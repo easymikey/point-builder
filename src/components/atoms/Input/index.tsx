@@ -6,14 +6,14 @@ import React, {
 } from 'react';
 
 export interface InputProps {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  namePoint: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input: ForwardRefRenderFunction<
   HTMLInputElement,
   InputProps
-> = ({ onChange }, ref) => (
-  <input className="input-submit" ref={ref} onChange={onChange} />
+> = ({ namePoint }, ref) => (
+  <input className="input-submit" ref={ref} onChange={namePoint} />
 );
 
 export default memo(forwardRef<HTMLInputElement, InputProps>(Input));
