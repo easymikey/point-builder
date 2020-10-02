@@ -13,9 +13,9 @@ interface GeoPointForm extends InputProps {
 const GeoPointForm: ForwardRefRenderFunction<
   HTMLInputElement,
   GeoPointForm
-> = ({ onChange, onSubmit }, ref) => (
+> = ({ namePoint, onSubmit }, ref) => (
   <form className="geo-point-form" onSubmit={onSubmit}>
-    <Input ref={ref} onChange={onChange} />
+    <Input ref={ref} namePoint={namePoint} />
     <Button type="submit" buttonName="Добавить" onClick={onSubmit} />
   </form>
 );
