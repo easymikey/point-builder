@@ -1,46 +1,39 @@
-import React, { FC } from 'react';
+import * as React from 'react';
 import {
-  YMaps,
-  Map,
   FullscreenControl,
-  ZoomControl,
+  Map,
   Polyline,
+  YMaps,
+  ZoomControl
 } from 'react-yandex-maps';
-import GeoPointsOnMap, {
-  GeoPointsOnMapProps,
-} from '../../moleculas/GeoPointsOnMap';
+import { MapProps } from '../../../types';
 import Spinner from '../../atoms/Spinner';
+import GeoPointsOnMap from '../../moleculas/GeoPointsOnMap';
 
 const mapState = {
   center: [55.76, 37.64],
   zoom: 9,
-  controls: [],
+  controls: []
 };
 
 const polylineOptions = {
   balloonCloseButton: false,
   strokeColor: '#000',
   strokeWidth: 4,
-  strokeOpacity: 0.5,
+  strokeOpacity: 0.5
 };
 
 const zoomControlOptions = {
   float: 'right',
-  size: 'auto',
+  size: 'auto'
 };
 
-interface MapProps extends GeoPointsOnMapProps {
-  geometry: (number[] | never)[];
-  isLoading: boolean;
-  updateLoadingState: () => void;
-}
-
-const MyMap: FC<MapProps> = ({
+const MyMap: React.FC<MapProps> = ({
   pointList,
   geometry,
   handleGeometryChange,
   isLoading,
-  updateLoadingState,
+  updateLoadingState
 }) => (
   <>
     <YMaps>
@@ -54,10 +47,7 @@ const MyMap: FC<MapProps> = ({
           pointList={pointList}
           handleGeometryChange={handleGeometryChange}
         />
-        <Polyline
-          geometry={geometry}
-          options={polylineOptions}
-        />
+        <Polyline geometry={geometry} options={polylineOptions} />
         <FullscreenControl />
         <ZoomControl options={zoomControlOptions} />
       </Map>
