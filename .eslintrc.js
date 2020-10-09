@@ -5,12 +5,7 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended'
   ],
-  plugins: [
-    'react',
-    'react-app',
-    'react-hooks',
-    '@typescript-eslint'
-  ],
+  plugins: ['react', 'react-hooks'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
@@ -41,6 +36,6 @@ module.exports = {
     'dot-notation': 'warn',
     'import/prefer-default-export': 'off',
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off'
   }
 };
