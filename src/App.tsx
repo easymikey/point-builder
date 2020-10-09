@@ -1,19 +1,19 @@
 import React, { FC, useState } from 'react';
-import { Point } from '../src/components/moleculas/GeoPointList';
 import Map from '../src/components/organisms/Map';
 import GeoPointBlock from '../src/components/organisms/PointBlock';
+import { Point } from './types';
 
 const App: FC = () => {
   const [pointList, setPointList] = useState<(Point | never)[]>([]);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<true | false>(true);
 
   const updateLoadingState = () => {
     setIsLoading(false);
   };
 
   const [coodinates, setCoordinates] = useState<(number[] | never)[]>(
-    [],
+    []
   );
 
   const getCoodinates = (points: Point[]) => {
