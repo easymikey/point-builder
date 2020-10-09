@@ -1,13 +1,9 @@
 import React, {
-  ChangeEvent,
   forwardRef,
   ForwardRefRenderFunction,
-  memo,
+  memo
 } from 'react';
-
-export interface InputProps {
-  namePoint: (event: ChangeEvent<HTMLInputElement>) => void;
-}
+import { InputProps } from '../../../types';
 
 const Input: ForwardRefRenderFunction<
   HTMLInputElement,
