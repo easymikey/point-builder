@@ -1,24 +1,12 @@
 import React, { FC } from 'react';
+import { GeoPointListProps } from '../../../types';
 import GeoPointItem from '../../atoms/GeoPointItem';
 import Header from '../../atoms/Header';
-
-export interface Point {
-  id: string;
-  pointName: string;
-  geometry: number[];
-  checked: boolean;
-}
-
-interface GeoPointListProps {
-  pointList: (Point | never)[];
-  handleOnChangeCheckedPoint: (index: string) => void;
-  handleOnDeletePoint: (id: string) => void;
-}
 
 const GeoPointList: FC<GeoPointListProps> = ({
   pointList,
   handleOnChangeCheckedPoint,
-  handleOnDeletePoint,
+  handleOnDeletePoint
 }) => (
   <div className="geo-point-list">
     <Header title="Ваши точки на карте" />
