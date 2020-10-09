@@ -3,21 +3,17 @@ import React, {
   FC,
   SyntheticEvent,
   useRef,
-  useState,
+  useState
 } from 'react';
+import { GeoPointBlockProps } from '../../../types';
 import GeoPointForm from '../../moleculas/GeoPointForm';
-import GeoPointList, { Point } from '../../moleculas/GeoPointList';
-
-interface GeoPointBlockProps {
-  pointList: (Point | never)[];
-  setPointList: (list: Point[]) => void;
-}
+import GeoPointList from '../../moleculas/GeoPointList';
 
 const GeoPointBlock: FC<GeoPointBlockProps> = ({
   pointList,
-  setPointList,
+  setPointList
 }) => {
-  const gerenateId = (size: number = 16) => {
+  const gerenateId = (size = 16) => {
     const randomString = [...Array(size)]
       .map(() => Math.floor(Math.random() * 36).toString(36))
       .join('');
@@ -43,7 +39,7 @@ const GeoPointBlock: FC<GeoPointBlockProps> = ({
       pointName,
       id,
       geometry,
-      checked: false,
+      checked: false
     };
     if (pointName !== '') {
       setPointList([...pointList, newPoint]);
@@ -63,9 +59,7 @@ const GeoPointBlock: FC<GeoPointBlockProps> = ({
   const pointRef = useRef<HTMLInputElement | null>(null);
   const [pointName, setPointName] = useState<string>('');
 
-  const namePoint = (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
+  const namePoint = (event: ChangeEvent<HTMLInputElement>) => {
     const { value: name } = event.currentTarget;
     setPointName(name);
   };
