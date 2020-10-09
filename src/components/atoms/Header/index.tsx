@@ -1,7 +1,5 @@
 import React, { FC, memo } from 'react';
-interface HeaderProps {
-  title: string;
-}
+import { HeaderProps } from '../../../types';
 
 const Header: FC<HeaderProps> = ({ title }) => <h1>{title}</h1>;
 
