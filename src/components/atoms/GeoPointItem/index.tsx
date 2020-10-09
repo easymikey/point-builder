@@ -1,18 +1,12 @@
 import React, { FC } from 'react';
+import { GeoPointItemProps } from '../../../types';
 import Button from '../Button';
-
-interface GeoPointItemProps {
-  label: string | undefined;
-  checked: boolean;
-  handleOnChangeCheckedPoint: () => void;
-  handleOnDeletePoint: () => void;
-}
 
 const GeoPointItem: FC<GeoPointItemProps> = ({
   label,
   checked,
   handleOnChangeCheckedPoint,
-  handleOnDeletePoint,
+  handleOnDeletePoint
 }) => (
   <label className="geo-point-item">
     <div>
