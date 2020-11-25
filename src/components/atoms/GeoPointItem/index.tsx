@@ -1,52 +1,21 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
+import { GeoPointItemProps } from '../../../types';
 import Button from '../Button';
 
-const StyledLabel = styled.label`
-  width: 100%;
-  margin: 0;
-  height: 2rem;
-  padding-right: 1rem;
-  border-bottom-width: 1px;
-
-  color: #474242;
-  border-bottom-color: rgba(199, 197, 197, 0.5);
-
-  display: flex;
-  border-bottom-style: solid;
-  align-items: center;
-  justify-content: space-between;
-
-  white-space: nowrap;
-  font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const StyledCheckbox = styled.input`
-  margin: 0 0.5rem;
-`;
-
-interface PointListItemProps {
-  label: string | undefined;
-  checked: boolean;
-  onChange: () => void;
-  deletePoint: () => void;
-}
-
-const PointListItem: FC<PointListItemProps> = ({
+const GeoPointItem: FC<GeoPointItemProps> = ({
   label,
   checked,
-  onChange,
-  deletePoint,
+  handleOnChangeCheckedPoint,
+  handleOnDeletePoint
 }) => (
-  <StyledLabel>
+  <label className="geo-point-item">
     <div>
-      <StyledCheckbox
+      <input
+        className="geo-point-item__checkbox"
         type="checkbox"
         value={label}
         checked={checked}
-        onChange={onChange}
+        onChange={handleOnChangeCheckedPoint}
       />
       {label}
     </div>
@@ -55,10 +24,10 @@ const PointListItem: FC<PointListItemProps> = ({
         color="secondary"
         type="button"
         buttonName="удалить"
-        onClick={deletePoint}
+        onClick={handleOnDeletePoint}
       />
     )}
-  </StyledLabel>
+  </label>
 );
 
-export default PointListItem;
+export default GeoPointItem;

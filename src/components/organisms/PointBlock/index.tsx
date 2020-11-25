@@ -1,23 +1,19 @@
 import React, {
-  FC,
-  useState,
-  useRef,
   ChangeEvent,
+  FC,
   SyntheticEvent,
+  useRef,
+  useState
 } from 'react';
-import AddPointForm from '../../moleculas/AddGeoPointForm';
-import PointList, { Point } from '../../moleculas/GeoPointList';
+import { GeoPointBlockProps } from '../../../types';
+import GeoPointForm from '../../moleculas/GeoPointForm';
+import GeoPointList from '../../moleculas/GeoPointList';
 
-interface PointBlockProps {
-  pointList: (Point | never)[];
-  setPointList: (list: Point[]) => void;
-}
-
-const PointBlock: FC<PointBlockProps> = ({
+const GeoPointBlock: FC<GeoPointBlockProps> = ({
   pointList,
-  setPointList,
+  setPointList
 }) => {
-  const getId = (size: number = 16) => {
+  const gerenateId = (size = 16) => {
     const randomString = [...Array(size)]
       .map(() => Math.floor(Math.random() * 36).toString(36))
       .join('');
@@ -25,7 +21,7 @@ const PointBlock: FC<PointBlockProps> = ({
     return randomString;
   };
 
-  const handleChangeChecked = (index: string) => {
+  const checkPointOnList = (index: string) => {
     const newPointList = pointList.slice().map((pointItem) => {
       const { id, checked } = pointItem;
       return id === index
@@ -35,15 +31,15 @@ const PointBlock: FC<PointBlockProps> = ({
     setPointList(newPointList);
   };
 
-  const addPoint = (event: SyntheticEvent) => {
+  const addPointToMap = (event: SyntheticEvent) => {
     event.preventDefault();
-    const id = getId(16);
+    const id = gerenateId(16);
     const geometry = [55.75, 37.57];
     const newPoint = {
       pointName,
       id,
       geometry,
-      checked: false,
+      checked: false
     };
     if (pointName !== '') {
       setPointList([...pointList, newPoint]);
@@ -51,38 +47,37 @@ const PointBlock: FC<PointBlockProps> = ({
     }
   };
 
-  const deletePoint = (deletedId: string) => {
+  const deletePointFromMap = (deletedId: string) => {
+    console.log('hello', deletedId);
     const newPointList = pointList.slice().filter(({ id }) => {
       return id !== deletedId;
     });
+    console.log(newPointList);
     setPointList(newPointList);
   };
 
-  const pointRef = useRef();
+  const pointRef = useRef<HTMLInputElement | null>(null);
   const [pointName, setPointName] = useState<string>('');
 
-  const handleChangePointName = (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
+  const namePoint = (event: ChangeEvent<HTMLInputElement>) => {
     const { value: name } = event.currentTarget;
     setPointName(name);
   };
 
   return (
     <div>
-      <AddPointForm
-        inputRef={pointRef}
-        value={pointName}
-        onChange={handleChangePointName}
-        onSubmit={addPoint}
+      <GeoPointForm
+        ref={pointRef}
+        namePoint={namePoint}
+        onSubmit={addPointToMap}
       />
-      <PointList
+      <GeoPointList
         pointList={pointList}
-        handleChangeChecked={handleChangeChecked}
-        deletePoint={deletePoint}
+        handleOnChangeCheckedPoint={checkPointOnList}
+        handleOnDeletePoint={deletePointFromMap}
       />
     </div>
   );
 };
 
-export default PointBlock;
+export default GeoPointBlock;

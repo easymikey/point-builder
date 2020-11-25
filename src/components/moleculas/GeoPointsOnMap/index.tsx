@@ -1,15 +1,10 @@
 import React, { FC } from 'react';
 import { Placemark } from 'react-yandex-maps';
-import { Point } from '../GeoPointList';
-
-export interface GeoPointsOnMapProps {
-  pointList: (Point | never)[];
-  handleGeometryChange: (event: any, name: string) => void;
-}
+import { GeoPointsOnMapProps } from '../../../types';
 
 const GeoPointListOnMap: FC<GeoPointsOnMapProps> = ({
   pointList,
-  handleGeometryChange,
+  handleGeometryChange
 }) => (
   <>
     {pointList &&
@@ -18,12 +13,10 @@ const GeoPointListOnMap: FC<GeoPointsOnMapProps> = ({
           key={index}
           geometry={geometry}
           properties={{
-            iconCaption: pointName,
+            iconCaption: pointName
           }}
           options={{ draggable: true }}
-          onDragEnd={(event: any) =>
-            handleGeometryChange(event, id)
-          }
+          onDragEnd={(event: any) => handleGeometryChange(event, id)}
         />
       ))}
   </>

@@ -53,7 +53,7 @@ const Button: FC<ButtonProps> = ({
   color = 'primary',
   type = 'submit',
   onClick,
-  buttonName,
+  buttonName
 }) => (
   <StyledButton type={type} onClick={onClick} color={color}>
     {buttonName}
